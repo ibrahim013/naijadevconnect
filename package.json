@@ -1,0 +1,25 @@
+{
+  "name": "naijadevconnect",
+  "version": "1.0.0",
+  "description": "A social network for Nigerian developers",
+  "main": "server.js",
+  "repository": "https://github.com/ibrahim013/naijadevconnect.git",
+  "author": "Ibrahim-Abdulazeez <walaibrahim13@gmail.com>",
+  "license": "MIT",
+  "scripts":{
+    "start": "nodemon server.js -w"
+  },
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.18.3",
+    "express": "^4.16.3",
+    "jsonwebtoken": "^8.3.0",
+    "mongoose": "^5.2.10",
+    "passport": "^0.4.0",
+    "passport-jwt": "^4.0.0",
+    "validator": "^10.7.0"
+  },
+  "devDependencies": {
+    "nodemon": "^1.18.3"
+  }
+}
