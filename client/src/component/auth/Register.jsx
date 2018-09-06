@@ -43,7 +43,6 @@ class Register extends Component {
       <div className="container-fluid register">
         <div className="registration-form">
           <div className="form-side">
-<<<<<<< HEAD
             <h5>DevConnect</h5>
             <p className="side-message">Create your account</p>
             <p className="side-message-2">
@@ -119,55 +118,3 @@ export default connect(
   mapStateToProps,
   { registerUser }
 )(withRouter(Register));
-=======
-          <h5 >DevConnect</h5>
-          <p className="side-message">
-          Create your account
-          </p>
-          <p className="side-message-2">
-          Sign up for a free account. No credit card required.
-          </p>
-          </div>
-          <div className="form-main"> 
-            <Form
-              type='text'
-              name='name'
-              onChange='name'
-              placeholder='Account Name'
-              glyphicon='fas fa-user icon'
-              label='Account name'
-            />
-            <Form
-            type='email'
-            name='email'
-            onChange='email'
-            placeholder='email'
-            glyphicon='fas fa-envelope icon'
-            label='email'
-          />
-          <Form
-            type='password'
-            name='password'
-            onChange='password'
-            placeholder='password'
-            glyphicon='fas fa-key icon'
-            label='password'
-          />
-          <Form
-            type='password'
-            name='c-password'
-            onChange='password'
-            placeholder='confirm password'
-            glyphicon='fas fa-unlock-alt icon'
-            label='confirm password'
-          />
-          <a href="/" className="submit">Create account</a>
-          </div>
-        </div>
-        <div className="footer-content">Already have an account with us?<Link to="/"> Log in </Link>instead.</div>
-      </div>
-    )
-  }
-}
-export default Register;
->>>>>>> login and signup form added
