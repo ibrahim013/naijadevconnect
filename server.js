@@ -12,7 +12,7 @@ const posts = require("./routes/api/v1/posts");
 const db = require("./config/keys").mongoURI;
 
 const app = express();
-const port = process.env.PORT || 5000;
+const port = process.env.PORT || 8000;
 
 //connect to mongodb
 mongoose

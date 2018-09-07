@@ -11,19 +11,19 @@ module.exports = validateRegisterInput = data => {
   
   
   if (!Validator.isLength(data.name, { min: 2, max: 50 })) {
-    errors.name = "Name must be between 2 and 50 character";
+    errors.name = "name must be between 2 and 50 character";
   }
   
   if(Validator.isEmpty(data.name)){
-    errors.name = "Name filed is reqired"
+    errors.name = "name filed is reqired"
   }
   
   if (!Validator.isEmail(data.email)) {
-    errors.email = "Email is invalid";
+    errors.email = "email is invalid";
   }
 
   if(Validator.isEmpty(data.email)){
-    errors.email = "Email filed is reqired"
+    errors.email = "email filed is reqired"
   }
  
   if (!Validator.isLength(data.password, { min: 6, max: 50 })) {

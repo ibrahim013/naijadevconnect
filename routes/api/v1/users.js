@@ -27,7 +27,7 @@ router.get("/test", (req, res) => res.json({ msg: "User works" }));
 router.post("/register", (req, res) => {
   const { errors, isValid } = validateRegisterInput(req.body);
   if (!isValid) {
-    return res.status(400).json({ errors });
+    return res.status(400).json(errors);
   }
   User.findOne({ email: req.body.email }).then(user => {
     if (user) {
@@ -65,20 +65,20 @@ router.post("/register", (req, res) => {
 router.post("/login", (req, res) => {
   const { errors, isValid } = validateLoginInput(req.body);
   if (!isValid) {
-    return res.status(400).json({ errors });
+    return res.status(400).json(errors);
   }
   const email = req.body.email;
   const password = req.body.password;
   User.findOne({ email })
     .then(user => {
       if (!user) {
-        return res.status(404).json({ msg: "User not found" });
+        return res.status(404).json({ password: "Username or password is Incorrect" });
       }
       bcrypt.compare(password, user.password).then(isMatch => {
         if (!isMatch) {
           return res
             .status(400)
-            .json({ status: "fail", msg: "Username or password is Incorrect" });
+            .json({ status: "fail", password: "Username or password is Incorrect" });
         }
         const payload = {
           id: user.id,
