@@ -1,7 +1,8 @@
 import axios from "axios";
 import setAuthHeader from "../utilities/setAuthHeader";
 import jwt_decode from "jwt-decode";
-import { SET_USER_DATA, GET_ERROR } from "../types/types";
+import { SET_USER_DATA, GET_ERRORS } from "../types/types";
+import { clearCurrentUserProfile } from '../actions/profileAction';
 
 export const setRegisteredUser = userData => {
   return {
@@ -11,7 +12,7 @@ export const setRegisteredUser = userData => {
 };
 export const setUserError = errors => {
   return {
-    type: GET_ERROR,
+    type: GET_ERRORS,
     payload: errors
   };
 };
@@ -38,12 +39,11 @@ export const userLogin = userData => dispatch => {
   axios
     .post("/api/users/login", userData)
     .then(res => {
-      console.log(res)
       const { token } = res.data;
       //set token to localstorage
       localStorage.setItem("jwtToken", token);
       //set autorization header
-      setAuthHeader(res);
+      setAuthHeader(token);
       //decode token
       const decodedToken = jwt_decode(token);
       //dispatch decoded token to redux store
