@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import Form from "../common/Form";
+import FormFieldTextGroup from "../common/FormFieldTextGroup";
 import { connect } from "react-redux";
 import { userLogin } from "../../actions/authAction";
 import PropTypes from "prop-types";
@@ -53,7 +53,7 @@ class Login extends Component {
             </p>
           </div>
           <div className="form-main">
-            <Form
+            <FormFieldTextGroup
               type="email"
               name="email"
               value={email}
@@ -63,7 +63,7 @@ class Login extends Component {
               glyphicon="fas fa-envelope icon"
               label="email"
             />
-            <Form
+            <FormFieldTextGroup
               type="password"
               name="password"
               value={password}

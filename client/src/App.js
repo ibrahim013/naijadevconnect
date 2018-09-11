@@ -12,6 +12,7 @@ import Register from './component/auth/Register';
 import Login from './component/auth/Login';
 import Dashboard from './component/Dashboard';
 import PrivateRoute from './component/common/PrivateRoute';
+import CreateProfile from "./component/CreateProfile";
 
 if(!isEmpty(authCheck())){
   store.dispatch(setUser(authCheck()));
@@ -26,9 +27,10 @@ class App extends Component {
           <Fragment>
             <Navbar />
             <Route exact path="/" component={LandingPage} />
-              <Route path="/register" component={Register} />
-              <Route path="/login" component={Login} />
-              <PrivateRoute path="/dashboard" component={Dashboard} />
+              <Route exact path="/register" component={Register} />
+              <Route exact path="/login" component={Login} />
+              <Route exact path="/createprofile" component={CreateProfile} />
+              <PrivateRoute exact path="/dashboard" component={Dashboard} />
           </Fragment>
           </Switch>
         </Router>

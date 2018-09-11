@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import Form from "../common/Form";
+import FormFieldTextGroup from "../common/FormFieldTextGroup";
 import PropTypes from 'prop-types';
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
@@ -50,7 +50,7 @@ class Register extends Component {
             </p>
           </div>
           <div className="form-main">
-            <Form
+            <FormFieldTextGroup
               type="text"
               name="name"
               value={name}
@@ -60,7 +60,7 @@ class Register extends Component {
               label="Account name"
               error={errors.name}
             />
-            <Form
+            <FormFieldTextGroup
               type="email"
               name="email"
               value={email}
@@ -70,7 +70,7 @@ class Register extends Component {
               label="email"
               error={errors.email}
             />
-            <Form
+            <FormFieldTextGroup
               type="password"
               name="password"
               value={password}
@@ -80,7 +80,7 @@ class Register extends Component {
               label="password"
               error={errors.password}
             />
-            <Form
+            <FormFieldTextGroup
               type="password"
               name="confirmPassword"
               value={confirmPassword}
