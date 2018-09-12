@@ -9,10 +9,11 @@ const FormInputTextGroup = ({
   info,
   error,
   name,
+  label,
   placeholder,
   glyphicon
 }) => (
-  <div className="form-content">
+  <div className="form-content-i">
     <i className={glyphicon} />
     <input
       type={type}
@@ -23,7 +24,6 @@ const FormInputTextGroup = ({
       className={classNames("form-data", {"is-info": info, "is-invalid": error})}
       placeholder={placeholder}
     />
-    <br/>
     {info && <span className="info">{info}</span>}
   </div>
 );

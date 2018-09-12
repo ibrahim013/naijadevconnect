@@ -177,11 +177,10 @@ body {
 }
 .profile-form {
   display: flex;
-  top: 20%;
-  left: 20%;
-  width: 60%;
+  top: 15%;
+  left: 5%;
+  width: 90%;
   position: absolute;
-  transform: translate(-20% -20%);
   border-radius: 0.5rem;
   overflow: hidden;
   background-color: #fbfbfb;
@@ -201,10 +200,30 @@ body {
   flex-direction: column;
   align-items: center;
 }
-
+.form-fl-side{
+  width:25%;
+  background-color: #282c37;
+  color: #fbfbfb;
+  padding: 2.5rem;
+}
+.form-fl-side > h5{
+  color: #fbfbfb;
+  font-family: "Merienda", "cursive", Arial, Helvetica, sans-serif;
+  font-weight: 700;
+}
+.form-fl-side > p {
+  color: #fbfbfb;
+  font-family: "Roboto", sans-serif;
+  font-size: 1.1rem;
+  line-height: 1.8rem;
+}
 .form-content {
   width: 90%;
   margin-bottom: 3.4rem;
+}
+.form-content-i {
+  width: 100%;
+  margin-bottom: 2.5rem;
 }
 .form-data {
   width: 85%;
@@ -274,6 +293,13 @@ body {
   color: #fbfbfb;
   font-family: "Roboto", sans-serif;
 }
+.form-l-side{
+  padding: 2rem 1.5rem 0 1.5rem;
+  width: 50%;
+}
+.form-r-side{
+  width:35%;
+}
 .side-message {
   font-size: 1.9rem;
   line-height: 2.5rem;
@@ -323,4 +349,9 @@ body {
 }
 .d-user{
 padding: .4rem;
+}
+.info{
+  display: block;
+  width: 85%;
+  font-size: .8rem;
 }
