@@ -7,6 +7,7 @@ const FormInputTextGroup = ({
   value,
   onChange,
   info,
+  error,
   name,
   placeholder,
   glyphicon
@@ -18,7 +19,8 @@ const FormInputTextGroup = ({
       value={value}
       onChange={onChange}
       name={name}
-      className={classNames("form-data", {"is-info": info})}
+      error={error}
+      className={classNames("form-data", {"is-info": info, "is-invalid": error})}
       placeholder={placeholder}
     />
     <br/>

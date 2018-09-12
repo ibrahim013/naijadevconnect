@@ -11,7 +11,7 @@ const FormSelectGroup = ({
   options
 }) => {
   const selectedOption = options.map(option => (
-    <option key={option.label}>{option.name}</option>
+    <option key={option.value}>{option.label}</option>
   ))
   return(
 <div className="form-content">
