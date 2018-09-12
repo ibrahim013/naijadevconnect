@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import FormInputTextGroup from "./common/FormInputTextField";
 import FormSelectGroup from "./common/FormSelectGroup";
+import FormTextAreaGroup from "./common/FormTextAreaGroup";
 
 export default class CreateProfile extends Component {
   constructor() {
@@ -107,7 +108,15 @@ export default class CreateProfile extends Component {
               info="if you want latest repo and a Github link, include your username"
             />
           </div>
-          <div className="form-r-side" />
+          <div className="form-r-side" >
+          <FormTextAreaGroup
+            name="bio"
+            placeholder="bio"
+            error={error.bio}
+            onChange={this.onChange}
+            info="Tell us little about your self"
+          />
+          </div>
         </div>
       </div>
     );

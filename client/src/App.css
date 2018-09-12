@@ -232,6 +232,10 @@ body {
   border-bottom: 1px solid black;
   transition: all 0.3s;
 }
+.text{
+border: 1px solid black;
+min-height:12rem ;
+}
 .icon {
   padding-right: 0.8rem;
 }
@@ -295,11 +299,13 @@ body {
 }
 .form-l-side{
   padding: 2rem 1.5rem 0 1.5rem;
-  width: 50%;
+  width: 40%;
 }
 .form-r-side{
-  width:35%;
+  padding: 2rem 0rem 0 .5rem;
+  width: 40%;
 }
+
 .side-message {
   font-size: 1.9rem;
   line-height: 2.5rem;
