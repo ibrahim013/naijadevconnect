@@ -46,7 +46,11 @@ export default class CreateProfile extends Component {
       gitHubUserName,
       bio,
       displaySocialInput,
-      facebook
+      facebook,
+      linkedin,
+      instagram,
+      twitter,
+      youtube
     } = this.state;
     const options = [
       { label: "* Select Professional Status", value: 0 },
@@ -69,35 +73,35 @@ export default class CreateProfile extends Component {
           placeholder='Facebook'
           name='facebook'
           value={facebook}
-          onChange={()=>{}}
+          onChange={this.onChange}
           />
            <FormSocialInput
           icon="fab fa-linkedin-in"
           placeholder='Linkedin'
-          name='facebook'
-          value={facebook}
-          onChange={()=>{}}
+          name='linkedin'
+          value={linkedin}
+          onChange={this.onChange}
           />
            <FormSocialInput
           icon="fab fa-twitter"
           placeholder='twitter'
-          name='facebook'
-          value={facebook}
-          onChange={()=>{}}
+          name='twitter'
+          value={twitter}
+          onChange={this.onChange}
           />
            <FormSocialInput
           icon="fab fa-instagram"
           placeholder='Instagram'
-          name='facebook'
-          value={facebook}
-          onChange={()=>{}}
+          name='instagram'
+          value={instagram}
+          onChange={this.onChange}
           />
            <FormSocialInput
           icon="fab fa-youtube"
           placeholder='youtube'
-          name='facebook'
-          value={facebook}
-          onChange={()=>{}}
+          name='youtube'
+          value={youtube}
+          onChange={this.onChange}
           />
         </div>
       )
