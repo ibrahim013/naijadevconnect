@@ -138,7 +138,7 @@ export default class CreateProfile extends Component {
               error={error.company}
               onChange={this.onChange}
               placeholder="*company"
-              info="* could be you own company or one you work for"
+              info="* could be your own company or one you work for"
             />
             <FormInputTextGroup
               name="location"
@@ -154,7 +154,7 @@ export default class CreateProfile extends Component {
               error={error.skills}
               onChange={this.onChange}
               placeholder="*skills"
-              info="*please you comma sepprated values eg(html,css,javascript,python)"
+              info="*please use comma sepprated values eg(html,css,javascript,python)"
             />
             <FormInputTextGroup
               name="githubusername"
@@ -168,7 +168,7 @@ export default class CreateProfile extends Component {
           <div className="form-r-side" >
           <FormTextAreaGroup
             name="bio"
-            placeholder="bio"
+            placeholder="brief about you"
             value={bio}
             error={error.bio}
             onChange={this.onChange}
