@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 import FormInputTextGroup from "./common/FormInputTextField";
 import FormSelectGroup from "./common/FormSelectGroup";
 import FormTextAreaGroup from "./common/FormTextAreaGroup";
+import FormSocialInput from "./common/FormSocialInput";
 
 export default class CreateProfile extends Component {
   constructor() {
@@ -29,6 +30,12 @@ export default class CreateProfile extends Component {
   onChange = event => {
     this.setState({ [event.target.name]: event.target.value });
   };
+
+  handleToggle = ()=> {
+    this.setState(prevState => ({
+      displaySocialInput: !prevState.displaySocialInput
+    }))
+  }
   render() {
     const {
       error,
@@ -36,7 +43,10 @@ export default class CreateProfile extends Component {
       company,
       location,
       skills,
-      gitHubUserName
+      gitHubUserName,
+      bio,
+      displaySocialInput,
+      facebook
     } = this.state;
     const options = [
       { label: "* Select Professional Status", value: 0 },
@@ -49,6 +59,49 @@ export default class CreateProfile extends Component {
       { label: "Intern", value: "Intern" },
       { label: "Others", value: "Others" }
     ];
+
+    let socialInputs;
+    if(displaySocialInput){
+      socialInputs = (
+        <div>
+          <FormSocialInput
+          icon="fab fa-facebook-f"
+          placeholder='Facebook'
+          name='facebook'
+          value={facebook}
+          onChange={()=>{}}
+          />
+           <FormSocialInput
+          icon="fab fa-linkedin-in"
+          placeholder='Linkedin'
+          name='facebook'
+          value={facebook}
+          onChange={()=>{}}
+          />
+           <FormSocialInput
+          icon="fab fa-twitter"
+          placeholder='twitter'
+          name='facebook'
+          value={facebook}
+          onChange={()=>{}}
+          />
+           <FormSocialInput
+          icon="fab fa-instagram"
+          placeholder='Instagram'
+          name='facebook'
+          value={facebook}
+          onChange={()=>{}}
+          />
+           <FormSocialInput
+          icon="fab fa-youtube"
+          placeholder='youtube'
+          name='facebook'
+          value={facebook}
+          onChange={()=>{}}
+          />
+        </div>
+      )
+    }
     return (
       <div className="container-fluid register">
         <div className="profile-form">
@@ -112,10 +165,15 @@ export default class CreateProfile extends Component {
           <FormTextAreaGroup
             name="bio"
             placeholder="bio"
+            value={bio}
             error={error.bio}
             onChange={this.onChange}
             info="Tell us little about your self"
           />
+          <div className="social-button" onClick={this.handleToggle}>Add Social Links</div>
+          <div>
+            {socialInputs}
+          </div>
           </div>
         </div>
       </div>

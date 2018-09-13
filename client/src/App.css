@@ -361,3 +361,6 @@ padding: .4rem;
   width: 85%;
   font-size: .8rem;
 }
+.social-button{
+  cursor: pointer;
+}
