@@ -14,7 +14,7 @@ const FormSelectGroup = ({
     <option key={option.value}>{option.label}</option>
   ))
   return(
-<div className="form-content">
+<div className="form-content-i">
     <i className={glyphicon} />
     <select
       value={value}

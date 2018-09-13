@@ -10,7 +10,6 @@ export default class CreateProfile extends Component {
   constructor() {
     super();
     this.state = {
-      displaySocialInput: false,
       handle: "",
       company: "",
       website: "",
@@ -31,11 +30,6 @@ export default class CreateProfile extends Component {
     this.setState({ [event.target.name]: event.target.value });
   };
 
-  handleToggle = ()=> {
-    this.setState(prevState => ({
-      displaySocialInput: !prevState.displaySocialInput
-    }))
-  }
   render() {
     const {
       error,
@@ -64,55 +58,13 @@ export default class CreateProfile extends Component {
       { label: "Others", value: "Others" }
     ];
 
-    let socialInputs;
-    if(displaySocialInput){
-      socialInputs = (
-        <div>
-          <FormSocialInput
-          icon="fab fa-facebook-f"
-          placeholder='Facebook'
-          name='facebook'
-          value={facebook}
-          onChange={this.onChange}
-          />
-           <FormSocialInput
-          icon="fab fa-linkedin-in"
-          placeholder='Linkedin'
-          name='linkedin'
-          value={linkedin}
-          onChange={this.onChange}
-          />
-           <FormSocialInput
-          icon="fab fa-twitter"
-          placeholder='twitter'
-          name='twitter'
-          value={twitter}
-          onChange={this.onChange}
-          />
-           <FormSocialInput
-          icon="fab fa-instagram"
-          placeholder='Instagram'
-          name='instagram'
-          value={instagram}
-          onChange={this.onChange}
-          />
-           <FormSocialInput
-          icon="fab fa-youtube"
-          placeholder='youtube'
-          name='youtube'
-          value={youtube}
-          onChange={this.onChange}
-          />
-        </div>
-      )
-    }
     return (
       <div className="container-fluid register">
         <div className="profile-form">
           <div className="form-fl-side">
             <h5>DevConnect</h5>
-            <p>Create your profile</p>
-            <p>Lets get some information to get your profile stand out</p>
+            <p className="side-message-p">Create your profile</p>
+            <p className="side-message-2">Lets get some information to get your profile stand out</p>
           </div>
           <div className="form-l-side">
             <FormInputTextGroup
@@ -165,19 +117,63 @@ export default class CreateProfile extends Component {
               info="if you want latest repo and a Github link, include your username"
             />
           </div>
-          <div className="form-r-side" >
-          <FormTextAreaGroup
-            name="bio"
-            placeholder="brief about you"
-            value={bio}
-            error={error.bio}
-            onChange={this.onChange}
-            info="Tell us little about your self"
-          />
-          <div className="social-button" onClick={this.handleToggle}>Add Social Links</div>
-          <div>
-            {socialInputs}
-          </div>
+          <div className="form-r-side">
+            <FormTextAreaGroup
+              name="bio"
+              placeholder="brief about you"
+              value={bio}
+              error={error.bio}
+              onChange={this.onChange}
+              info="Tell us little about your self"
+            />
+            <div className="social-input">
+            <p className="info">Add Social Network links (Optional)</p>
+              <div>
+                <FormSocialInput
+                  icon="fab fa-facebook-f"
+                  placeholder="Facebook"
+                  name="facebook"
+                  value={facebook}
+                  onChange={this.onChange}
+                  error={error.facebook}
+                />
+                <FormSocialInput
+                  icon="fab fa-linkedin-in"
+                  placeholder="Linkedin"
+                  name="linkedin"
+                  value={linkedin}
+                  onChange={this.onChange}
+                  error={error.linkedin}
+                />
+                <FormSocialInput
+                  icon="fab fa-twitter"
+                  placeholder="twitter"
+                  name="twitter"
+                  value={twitter}
+                  onChange={this.onChange}
+                  error={error.twitter}
+                />
+                <FormSocialInput
+                  icon="fab fa-instagram"
+                  placeholder="Instagram"
+                  name="instagram"
+                  value={instagram}
+                  onChange={this.onChange}
+                  error={error.instagram}
+                />
+                <FormSocialInput
+                  icon="fab fa-youtube"
+                  placeholder="youtube"
+                  name="youtube"
+                  value={youtube}
+                  onChange={this.onChange}
+                  error={error.youtube}
+                />
+              </div>
+            </div>
+            <div className="submit-profile" onClick={this.onSubmit}>
+              Create Profile
+            </div>
           </div>
         </div>
       </div>
