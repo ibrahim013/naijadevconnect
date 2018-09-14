@@ -1,4 +1,4 @@
-import { IS_LOADING, GET_PROFILE, GET_ERRORS, CLEAR_CURRENT_PROFILE } from "../types/types";
+import { IS_LOADING, GET_PROFILE, GET_ERRORS, CLEAR_CURRENT_PROFILE, CREATE_PROFILE } from "../types/types";
 import axios from "axios";
 
 //thunk
@@ -15,6 +15,12 @@ export const isLoading = () => {
   };
 };
 
+export const createProfile = (userProfile) => {
+  return{
+    type: CREATE_PROFILE,
+   payload: userProfile
+  }
+}
 export const getCurrentUserProfile = profile => {
   return {
     type: GET_PROFILE,
@@ -34,9 +40,19 @@ export const currentUserProfile = () => dispatch => {
     .get("/api/profile")
     .then(res => dispatch(getCurrentUserProfile(res.data)))
     .catch(err => {
-      if (err.response.data.errors.noprofile === "No profile found") {
+      if (err.response.data.noprofile === "No profile found") {
         return dispatch(getCurrentUserProfile({}));
       }
       dispatch(errors(err.response.data))
     });
 };
+
+export const newUserProfile =(userData) => dispatch => {
+axios.post('/api/profile/', userData).then((res)=>{
+  if(res){
+    dispatch(createProfile(res.data))
+    return true;
+  } 
+}).catch(err=>(dispatch(errors(err.response.data))))
+
+}

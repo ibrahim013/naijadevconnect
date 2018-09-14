@@ -7,7 +7,7 @@ const FormFieldTextGroup = ({
   label,
   value,
   onChange,
-  error,
+  errors,
   name,
   placeholder,
   glyphicon
@@ -19,14 +19,14 @@ const FormFieldTextGroup = ({
       value={value}
       onChange={onChange}
       name={name}
-      className={classNames("form-data", {"is-invalid": error})}
+      className={classNames("form-data", {"is-invalid": errors})}
       placeholder={placeholder}
       id={name}
     />
     <label className="form-label" htmlFor={name}>
       {label}
     </label>
-    {error && <span className="invalid-feedback">{error}</span>}
+    {errors && <span className="invalid-feedback">{errors}</span>}
   </div>
 );
 
@@ -38,7 +38,7 @@ FormFieldTextGroup.propTypes = {
   label: PropTypes.string.isRequired,
   id: PropTypes.string,
   placeholder: PropTypes.string,
-  error: PropTypes.string,
+  errors: PropTypes.string,
   glyphicon: PropTypes.string
 };
 

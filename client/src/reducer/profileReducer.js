@@ -1,4 +1,4 @@
-import { IS_LOADING, GET_PROFILE, GET_ERRORS, CLEAR_CURRENT_PROFILE } from "../types/types";
+import { IS_LOADING, GET_PROFILE, GET_ERRORS, CLEAR_CURRENT_PROFILE, CREATE_PROFILE } from "../types/types";
 
 const initialState = {
   isLoading: false,
@@ -27,6 +27,11 @@ export const profileReducer = (state=initialState, action) => {
     case CLEAR_CURRENT_PROFILE:
     return{
       ...state
+    }
+    case CREATE_PROFILE:
+    return{
+      ...state,
+      profile: action.payload
     }
     default:
     return state

@@ -367,6 +367,12 @@ resize: none;
   margin: 0;
 }
 
+.invalid-feedback-p {
+  display: inline-block;
+  line-height: 0;
+  color: red;
+  margin: 0;
+}
 .avatar{
   border-radius: 50%;
   width: 18%;

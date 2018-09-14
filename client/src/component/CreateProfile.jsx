@@ -5,8 +5,9 @@ import FormInputTextGroup from "./common/FormInputTextField";
 import FormSelectGroup from "./common/FormSelectGroup";
 import FormTextAreaGroup from "./common/FormTextAreaGroup";
 import FormSocialInput from "./common/FormSocialInput";
+import { newUserProfile } from "../actions/profileAction";
 
-export default class CreateProfile extends Component {
+class CreateProfile extends Component {
   constructor() {
     super();
     this.state = {
@@ -23,23 +24,32 @@ export default class CreateProfile extends Component {
       instagram: "",
       youtube: "",
       linkedin: "",
-      error: {}
+      errors: {}
     };
   }
   onChange = event => {
     this.setState({ [event.target.name]: event.target.value });
   };
-
+  onSubmit = event => {
+    event.preventDefault;
+    this.props.newUserProfile(this.state);
+  };
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.errors) {
+      this.setState({
+        errors: nextProps.errors
+      });
+    }
+  }
   render() {
     const {
-      error,
+      errors,
       handle,
       company,
       location,
       skills,
       gitHubUserName,
       bio,
-      displaySocialInput,
       facebook,
       linkedin,
       instagram,
@@ -64,13 +74,15 @@ export default class CreateProfile extends Component {
           <div className="form-fl-side">
             <h5>DevConnect</h5>
             <p className="side-message-p">Create your profile</p>
-            <p className="side-message-2">Lets get some information to get your profile stand out</p>
+            <p className="side-message-2">
+              Lets get some information to get your profile stand out
+            </p>
           </div>
           <div className="form-l-side">
             <FormInputTextGroup
               name="handle"
               value={handle}
-              error={error.handle}
+              error={errors.handle}
               onChange={this.onChange}
               placeholder="*handle"
               info="* A unique handle for your profile URL. Your fullname, company name, nickname"
@@ -81,13 +93,13 @@ export default class CreateProfile extends Component {
               name="status"
               value={this.state.status}
               onChange={this.onChange}
-              error={error.status}
+              error={errors.status}
               info="Give us idea of where you are in your career"
             />
             <FormInputTextGroup
               name="company"
               value={company}
-              error={error.company}
+              error={errors.company}
               onChange={this.onChange}
               placeholder="*company"
               info="* could be your own company or one you work for"
@@ -95,7 +107,7 @@ export default class CreateProfile extends Component {
             <FormInputTextGroup
               name="location"
               value={location}
-              error={error.location}
+              error={errors.location}
               onChange={this.onChange}
               placeholder="location"
               info="city or state suggested(Lagos,LOS)"
@@ -103,7 +115,7 @@ export default class CreateProfile extends Component {
             <FormInputTextGroup
               name="skills"
               value={skills}
-              error={error.skills}
+              error={errors.skills}
               onChange={this.onChange}
               placeholder="*skills"
               info="*please use comma sepprated values eg(html,css,javascript,python)"
@@ -111,7 +123,7 @@ export default class CreateProfile extends Component {
             <FormInputTextGroup
               name="githubusername"
               value={gitHubUserName}
-              error={error.gitHubUserName}
+              error={errors.gitHubUserName}
               onChange={this.onChange}
               placeholder="Github UserName"
               info="if you want latest repo and a Github link, include your username"
@@ -122,12 +134,12 @@ export default class CreateProfile extends Component {
               name="bio"
               placeholder="brief about you"
               value={bio}
-              error={error.bio}
+              error={errors.bio}
               onChange={this.onChange}
               info="Tell us little about your self"
             />
             <div className="social-input">
-            <p className="info">Add Social Network links (Optional)</p>
+              <p className="info">Add Social Network links (Optional)</p>
               <div>
                 <FormSocialInput
                   icon="fab fa-facebook-f"
@@ -135,7 +147,7 @@ export default class CreateProfile extends Component {
                   name="facebook"
                   value={facebook}
                   onChange={this.onChange}
-                  error={error.facebook}
+                  error={errors.facebook}
                 />
                 <FormSocialInput
                   icon="fab fa-linkedin-in"
@@ -143,7 +155,7 @@ export default class CreateProfile extends Component {
                   name="linkedin"
                   value={linkedin}
                   onChange={this.onChange}
-                  error={error.linkedin}
+                  error={errors.linkedin}
                 />
                 <FormSocialInput
                   icon="fab fa-twitter"
@@ -151,7 +163,7 @@ export default class CreateProfile extends Component {
                   name="twitter"
                   value={twitter}
                   onChange={this.onChange}
-                  error={error.twitter}
+                  error={errors.twitter}
                 />
                 <FormSocialInput
                   icon="fab fa-instagram"
@@ -159,7 +171,7 @@ export default class CreateProfile extends Component {
                   name="instagram"
                   value={instagram}
                   onChange={this.onChange}
-                  error={error.instagram}
+                  error={errors.instagram}
                 />
                 <FormSocialInput
                   icon="fab fa-youtube"
@@ -167,7 +179,7 @@ export default class CreateProfile extends Component {
                   name="youtube"
                   value={youtube}
                   onChange={this.onChange}
-                  error={error.youtube}
+                  error={errors.youtube}
                 />
               </div>
             </div>
@@ -180,3 +192,14 @@ export default class CreateProfile extends Component {
     );
   }
 }
+CreateProfile.proptypes = {
+  newUserProfile: PropTypes.func.isRequired
+};
+const mapStateToProps = state => ({
+  auth: state.auth,
+  errors: state.errors
+});
+export default connect(
+  mapStateToProps,
+  { newUserProfile }
+)(CreateProfile);

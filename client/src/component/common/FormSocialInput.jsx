@@ -12,6 +12,8 @@ const FormSocialInput = ({
   error
 }) => {
   return (
+    <div>
+    {error && <span className="invalid-feedback-p">{error}</span>}
     <div className="input-group mb-3">
       <div className="input-group-prepend">
         <span className="input-group-text" id="basic-addon1">
@@ -28,7 +30,7 @@ const FormSocialInput = ({
         name={name}
         error={error}
       />
-      {error && <span className="invalid-feedback">{error}</span>}
+    </div>
     </div>
   );
 };

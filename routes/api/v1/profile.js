@@ -35,7 +35,7 @@ router.get(
       .then(Profile => {
         if (!Profile) {
           errors.noprofile = "No profile found";
-          return res.status(404).json({ errors });
+          return res.status(404).json(errors );
         }
         return res.json(Profile);
       })
@@ -55,7 +55,7 @@ router.get("/handle/:handle", (req, res) => {
     .then(profile => {
       if (!profile) {
         errors.findprofile = "no profile found";
-        return res.status(404).json({ errors });
+        return res.status(404).json( errors);
       }
       return res.json({ profile });
     })
@@ -75,7 +75,7 @@ router.get("/user/:user_id", (req, res) => {
     .then(profile => {
       if (!profile) {
         errors.findprofile = "no profile found";
-        return res.status(404).json({ errors });
+        return res.status(404).json(errors );
       }
       return res.json({ profile });
     })
@@ -95,7 +95,7 @@ router.get("/all", (req, res) => {
     .then(profiles => {
       if (!profiles) {
         errors.findprofile = "There are no profile";
-        return res.status(404).json({ errors });
+        return res.status(404).json(errors);
       }
       return res.json({ profiles });
     })
@@ -114,7 +114,7 @@ router.post(
   (req, res) => {
     const { errors, isValid } = validateProfileInput(req.body);
     if (!isValid) {
-      return res.status(400).json({ errors });
+      return res.status(400).json(errors);
     }
     //Get all fields set;
     const profileFieldSet = {};
@@ -161,7 +161,7 @@ router.post(
         }
         new Profile(profileFieldSet)
           .save()
-          .then(profile => res.json({ profile }))
+          .then(profile => res.json(profile ))
           .catch(err => res.status(400).json({ err }));
       });
     });
@@ -206,7 +206,7 @@ router.get("/all", (req, res) => {
         errors.findprofile = "There are no profile";
         return res.status(404).json({ errors });
       }
-      return res.json({ profiles });
+      return res.json(profiles);
     })
     .catch(err => res.status(500).json(err));
 });
@@ -223,7 +223,7 @@ router.post(
   (req, res) => {
     const { errors, isValid } = validateEducationInput(req.body);
     if (!isValid) {
-      return res.status(400).json({ errors });
+      return res.status(400).json(errors);
     }
     Profile.findOne({ user: req.user.id })
       .then(profile => {

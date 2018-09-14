@@ -7,7 +7,7 @@ module.exports = validateProfileInput = data => {
   data.handle = !isEmpty(data.handle) ? data.handle : '';
   data.status = !isEmpty(data.status) ? data.status : '';
   data.skills = !isEmpty(data.skills) ? data.skills : '';
-  
+ 
   if(!Validator.isLength(data.handle, {min: 2, max: 40})){
     errors.handle = "This handle is too short"
   }
@@ -46,6 +46,12 @@ module.exports = validateProfileInput = data => {
     }
   }
 
+  if(!isEmpty(data.instagram)){
+    if(!Validator.isURL(data.instagram)){
+      errors.instagram = "enter a vaild instagram url"
+    }
+  }
+  
   if(!isEmpty(data.facebook)){
     if(!Validator.isURL(data.facebook)){
       errors.facebook = "enter a vaild facebook url"

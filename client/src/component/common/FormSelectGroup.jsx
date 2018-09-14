@@ -7,42 +7,40 @@ const FormSelectGroup = ({
   onChange,
   info,
   name,
-  glyphicon,
-  options
+  options,
+  error
 }) => {
   const selectedOption = options.map(option => (
     <option key={option.value}>{option.label}</option>
-  ))
-  return(
-<div className="form-content-i">
-    <i className={glyphicon} />
-    <select
-      value={value}
-      onChange={onChange}
-      name={name}
-      className={classNames("form-data", {"is-info": info})}
-    >
-    {selectedOption}
-    </select>
-    {info && <span className="info">{info}</span>}
-  </div>
-  )
-  
+  ));
+  return (
+    <div className="form-content-i">
+      {error && <span className="invalid-feedback-p">{error}</span>}
+      <select
+        value={value}
+        onChange={onChange}
+        name={name}
+        error={error}
+        className={classNames("form-data", {
+          "is-info": info,
+          "is-invalid": error
+        })}
+      >
+        {selectedOption}
+      </select>
+      {info && <span className="info">{info}</span>}
+    </div>
+  );
 };
 
 FormSelectGroup.propTypes = {
   name: PropTypes.string.isRequired,
-  type: PropTypes.string.isRequired,
   value: PropTypes.string.isRequired,
   onChange: PropTypes.func.isRequired,
   options: PropTypes.array.isRequired,
   placeholder: PropTypes.string,
   info: PropTypes.string,
-  glyphicon: PropTypes.string
-};
-
-FormSelectGroup.defaultProps = {
-  type: "text"
+  error: PropTypes.string
 };
 
 export default FormSelectGroup;
