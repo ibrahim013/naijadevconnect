@@ -48,6 +48,7 @@ export const currentUserProfile = () => dispatch => {
 };
 
 export const newUserProfile =(userData) => dispatch => {
+dispatch(isLoading());
 axios.post('/api/profile/', userData).then((res)=>{
   if(res){
     dispatch(createProfile(res.data))

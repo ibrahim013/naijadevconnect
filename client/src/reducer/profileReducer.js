@@ -31,7 +31,8 @@ export const profileReducer = (state=initialState, action) => {
     case CREATE_PROFILE:
     return{
       ...state,
-      profile: action.payload
+      profile: action.payload,
+      isLoading:false
     }
     default:
     return state
