@@ -21,7 +21,7 @@ export const registerUser = (userData, history) => dispatch => {
   axios
     .post("/api/users/register", userData)
     .then(res => history.push("/login"))
-    .catch(err => dispatch(setUserError(err.response.data)));
+    .catch(err => dispatch(setUserError(err.response)));
 };
 
 //login
@@ -49,7 +49,7 @@ export const userLogin = userData => dispatch => {
       //dispatch decoded token to redux store
       dispatch(setUser(decodedToken));
     })
-    .catch(err => dispatch(setUserError(err.response.data)));
+    .catch(err => dispatch(setUserError(err.response)));
 };
 
 export const logoutUser = ()=> dispatch => {

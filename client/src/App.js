@@ -10,7 +10,7 @@ import LandingPage from './component/layout/Landing';
 import Navbar from './component/layout/Navbar';
 import Register from './component/auth/Register';
 import Login from './component/auth/Login';
-import Dashboard from './component/Dashboard';
+import Dashboard from './component/dashboard/Dashboard';
 import PrivateRoute from './component/common/PrivateRoute';
 import CreateProfile from "./component/CreateProfile";
 

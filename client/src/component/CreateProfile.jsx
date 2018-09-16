@@ -34,7 +34,7 @@ class CreateProfile extends Component {
   };
   onSubmit = event => {
     event.preventDefault;
-    this.props.newUserProfile(this.state);
+    this.props.newUserProfile(this.state, this.props.history);
   };
   componentDidMount() {
     this.props.currentUserProfile();
