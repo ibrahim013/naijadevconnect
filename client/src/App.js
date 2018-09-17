@@ -13,6 +13,7 @@ import Login from "./component/auth/Login";
 import Dashboard from "./component/dashboard/Dashboard";
 import PrivateRoute from "./component/common/PrivateRoute";
 import CreateProfile from "./component/CreateProfile";
+import EditProfile from "./component/EditProfile";
 
 if (!isEmpty(authCheck())) {
   store.dispatch(setUser(authCheck()));
@@ -31,6 +32,7 @@ class App extends Component {
               <Route exact path="/login" component={Login} />
               <Route exact path="/createprofile" component={CreateProfile} />
               <PrivateRoute exact path="/dashboard" component={Dashboard} />
+              <PrivateRoute exact path="/edit-profile" component={EditProfile} />
             </Switch>
           </div>
         </Router>

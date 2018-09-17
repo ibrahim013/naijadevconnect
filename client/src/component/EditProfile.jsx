@@ -1,7 +1,7 @@
 import React, { Component } from "react";
-import { Redirect } from "react-router-dom";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
+import isEmpty from '../validator/is-empty';
 import FormInputTextGroup from "./common/FormInputTextField";
 import FormSelectGroup from "./common/FormSelectGroup";
 import FormTextAreaGroup from "./common/FormTextAreaGroup";
@@ -45,6 +45,39 @@ class CreateProfile extends Component {
         errors: nextProps.errors
       });
     }
+    if(nextProps.profile.profile){
+      const profile = nextProps.profile.profile;
+      //join back skills
+      const skillsCsv = profile.skills.join(',');
+      profile.company = !isEmpty(profile.company) ? profile.company : ''
+      profile.location = !isEmpty(profile.location) ? profile.location : ''
+      profile.website = !isEmpty(profile.website) ? profile.website : ''
+      profile.githubusername = !isEmpty(profile.githubusername) ? profile.githubusername : ''
+      profile.bio = !isEmpty(profile.bio) ? profile.bio : ''
+
+      profile.social = !isEmpty(profile.social) ? profile.social : {}
+      profile.facebook = !isEmpty(profile.social.facebook) ? profile.social.facebook : ''
+      profile.twitter = !isEmpty(profile.social.twitter) ? profile.social.twitter : ''
+      profile.linkedin = !isEmpty(profile.social.linkedin) ? profile.social.linkedin : ''
+      profile.instagram = !isEmpty(profile.social.instagram) ? profile.social.instagram : ''
+      profile.youtube = !isEmpty(profile.social.youtube) ? profile.social.youtube : ''
+
+      this.setState({
+        handle: profile.handle,
+        company: profile.company,
+        website: profile.website,
+        location: profile.location,
+        status: profile.status,
+        githubusername: profile.githubusername,
+        bio: profile.bio,
+        skills: skillsCsv,
+        twitter: profile.twitter,
+        facebook: profile.facebook,
+        instagram: profile.instagram,
+        youtube: profile.youtube,
+        linkedin: profile.linkedin,
+      })
+    }
   }
   render() {
     const { profile, isLoading } = this.props.profile;
@@ -53,9 +86,7 @@ class CreateProfile extends Component {
     if (profile === null || isLoading) {
       return (dashboardContent = <Spinner />);
     }
-    if (Object.keys(profile).length > 0) {
-      return (dashboardContent = <Redirect to="/dashboard" />);
-    }
+
     const {
       errors,
       handle,
@@ -90,10 +121,7 @@ class CreateProfile extends Component {
           <div className="profile-form">
             <div className="form-fl-side">
               <h5>DevConnect</h5>
-              <p className="side-message-p">Create your profile</p>
-              <p className="side-message-2">
-                Lets get some information to get your profile stand out
-              </p>
+              <p className="side-message-p">Edit profile</p>
             </div>
             <div className="form-l-side">
               <FormInputTextGroup
@@ -118,8 +146,8 @@ class CreateProfile extends Component {
                 value={company}
                 error={errors.company}
                 onChange={this.onChange}
-                placeholder="*company"
-                info="* could be your own company or one you work for"
+                placeholder="company"
+                info="could be your own company or one you work for"
               />
               <FormInputTextGroup
                 name="location"
@@ -201,7 +229,7 @@ class CreateProfile extends Component {
                 </div>
               </div>
               <div className="submit-profile" onClick={this.onSubmit}>
-                {isLoading ? "Loading..." : "Create Profile "}
+                {isLoading ? "Loading..." : "Edit Profile "}
               </div>
             </div>
           </div>

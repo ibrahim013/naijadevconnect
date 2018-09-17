@@ -35,7 +35,7 @@ router.get(
       .then(Profile => {
         if (!Profile) {
           errors.noprofile = "No profile found";
-          return res.status(404).json(errors );
+          return res.status(404).json(errors);
         }
         return res.json(Profile);
       })
@@ -55,7 +55,7 @@ router.get("/handle/:handle", (req, res) => {
     .then(profile => {
       if (!profile) {
         errors.findprofile = "no profile found";
-        return res.status(404).json( errors);
+        return res.status(404).json(errors);
       }
       return res.json({ profile });
     })
@@ -75,7 +75,7 @@ router.get("/user/:user_id", (req, res) => {
     .then(profile => {
       if (!profile) {
         errors.findprofile = "no profile found";
-        return res.status(404).json(errors );
+        return res.status(404).json(errors);
       }
       return res.json({ profile });
     })
@@ -150,20 +150,21 @@ router.post(
           { new: true }
         )
           .then(profile => {
-            return res.json({ profile });
+            return res.json(profile);
           })
           .catch(err => res.status(400).json(err));
+      }else{
+        Profile.findOne({ handle: req.body.handle }).then(profile => {
+          if (profile) {
+            errors.handel = "This handle already exist";
+            res.status(400).json(errors);
+          }
+          new Profile(profileFieldSet)
+            .save()
+            .then(profile => res.json(profile))
+            .catch(err => res.status(400).json({ err }));
+        });
       }
-      Profile.findOne({ handle: req.body.handle }).then(profile => {
-        if (profile) {
-          errors.hande = "This handle already exist";
-          res.status(400).json({ errors });
-        }
-        new Profile(profileFieldSet)
-          .save()
-          .then(profile => res.json(profile ))
-          .catch(err => res.status(400).json({ err }));
-      });
     });
   }
 );
@@ -278,8 +279,8 @@ router.delete(
   "/",
   passport.authenticate("jwt", { session: false }),
   (req, res) => {
-    Profile.findOneAndRemove({ user: req.body.id }).then(() => {
-      User.findOneAndRemove({ _id: req.user.id }).then(() => {
+    Profile.findOneAndDelete({ user: req.body.id }).then(() => {
+      User.findOneAndDelete({ _id: req.user.id }).then(() => {
         res.json({ success: true });
       });
     });
