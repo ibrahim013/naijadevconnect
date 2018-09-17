@@ -2,7 +2,7 @@ import axios from "axios";
 import setAuthHeader from "../utilities/setAuthHeader";
 import jwt_decode from "jwt-decode";
 import { SET_USER_DATA, GET_ERRORS } from "../types/types";
-import { clearCurrentUserProfile } from '../actions/profileAction';
+import { clearCurrentUserProfile } from "../actions/profileAction";
 
 export const setRegisteredUser = userData => {
   return {
@@ -21,7 +21,7 @@ export const registerUser = (userData, history) => dispatch => {
   axios
     .post("/api/users/register", userData)
     .then(res => history.push("/login"))
-    .catch(err => dispatch(setUserError(err.response)));
+    .catch(err => dispatch(setUserError(err.response.data)));
 };
 
 //login
@@ -34,6 +34,7 @@ export const setUser = userData => {
     payload: userData
   };
 };
+
 
 export const userLogin = userData => dispatch => {
   axios
@@ -49,13 +50,25 @@ export const userLogin = userData => dispatch => {
       //dispatch decoded token to redux store
       dispatch(setUser(decodedToken));
     })
-    .catch(err => dispatch(setUserError(err.response)));
+    .catch(err => dispatch(setUserError(err.response.data)));
 };
 
-export const logoutUser = ()=> dispatch => {
+export const logoutUser = () => dispatch => {
   //remove token from local storage
-  localStorage.removeItem('jwtToken');
+  localStorage.removeItem("jwtToken");
   //remove from authorization header
   setAuthHeader(false);
-  dispatch(setUser({}))
-}
+  dispatch(setUser({}));
+};
+
+export const deleteAccount = () => dispatch => {
+  if (window.confirm("Are you sure? This can not be undo")) {
+    axios
+      .delete("/api/profile")
+      .then(res => {
+        setAuthHeader(false);
+        dispatch(setUser({}));
+      })
+      .catch(err => dispatch(setUserError(err.response.data)));
+  }
+};

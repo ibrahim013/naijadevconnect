@@ -3,7 +3,7 @@ import {
   GET_PROFILE,
   GET_ERRORS,
   CLEAR_CURRENT_PROFILE,
-  CREATE_PROFILE
+  CREATE_PROFILE,
 } from "../types/types";
 import axios from "axios";
 
@@ -40,6 +40,7 @@ export const clearCurrentUserProfile = () => {
   };
 };
 
+
 export const currentUserProfile = () => dispatch => {
   dispatch(isLoading());
   axios
@@ -63,3 +64,5 @@ export const newUserProfile = (userData, history) => dispatch => {
     })
     .catch(err => dispatch(errors(err.response.data)));
 };
+
+

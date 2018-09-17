@@ -1,5 +1,5 @@
 import isEmpty from "../validator/is-empty";
-import { SET_USER_DATA } from "../types/types";
+import { SET_USER_DATA} from "../types/types";
 
 const initialState = {
   isAuthenticated: false,
@@ -14,6 +14,7 @@ export const authReducer = (state = initialState, action) => {
         isAuthenticated: !isEmpty(action.payload),
         user: action.payload
       };
+    
     default:
       return state;
   }

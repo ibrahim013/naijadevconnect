@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { currentUserProfile } from "../../actions/profileAction";
+import {deleteAccount} from "../../actions/authAction";
 import PropTypes from "prop-types";
 import Spinner from "../common/Spinner";
 import { Link } from "react-router-dom";
@@ -9,6 +10,11 @@ import ProfileAction from "./ProfileAction";
 class Dashboard extends Component {
   componentDidMount() {
     this.props.currentUserProfile();
+  }
+
+ onDelete = (event) => {
+   event.preventDefault()
+  this.props.deleteAccount();
   }
   render() {
     const { user } = this.props.auth;
@@ -28,7 +34,7 @@ class Dashboard extends Component {
           <ProfileAction />
           {/*TODO: ADD experience and education*/}
           <div>
-            <button className="btn btn-danger">Delete My Account</button>
+            <button className="btn btn-danger" onClick={this.onDelete}>Delete My Account</button>
           </div>
         </div>
       ));
@@ -48,7 +54,9 @@ class Dashboard extends Component {
 
 Dashboard.propTypes = {
   auth: PropTypes.object.isRequired,
-  profile: PropTypes.object.isRequired
+  profile: PropTypes.object.isRequired,
+  currentUserProfile: PropTypes.func.isRequired,
+  deleteAccount: PropTypes.func.isRequired
 };
 const mapStateToProps = state => ({
   auth: state.auth,
@@ -56,5 +64,5 @@ const mapStateToProps = state => ({
 });
 export default connect(
   mapStateToProps,
-  { currentUserProfile }
+  { currentUserProfile, deleteAccount }
 )(Dashboard);
