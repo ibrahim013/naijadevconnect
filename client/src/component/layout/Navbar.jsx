@@ -16,7 +16,7 @@ class Navbar extends Component {
       <ul className="navbar-nav ml-auto">
         {" "}
         <li className="nav-item">
-          <Link to="/profiles" className="nav-link">
+          <Link to="/dashboard" className="nav-link">
             Dashboard
           </Link>
         </li>

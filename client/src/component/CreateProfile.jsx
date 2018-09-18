@@ -10,8 +10,8 @@ import { newUserProfile, currentUserProfile } from "../actions/profileAction";
 import Spinner from "./common/Spinner";
 
 class CreateProfile extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       handle: "",
       company: "",

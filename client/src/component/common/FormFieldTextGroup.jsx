@@ -35,7 +35,7 @@ FormFieldTextGroup.propTypes = {
   type: PropTypes.string.isRequired,
   value: PropTypes.string.isRequired,
   onChange: PropTypes.func.isRequired,
-  label: PropTypes.string.isRequired,
+  label: PropTypes.string,
   id: PropTypes.string,
   placeholder: PropTypes.string,
   error: PropTypes.string,
