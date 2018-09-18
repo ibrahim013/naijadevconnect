@@ -31,7 +31,7 @@ class AddExperience extends Component {
     this.setState({[event.target.name]: event.target.value})
   }
   render() {
-    const { errors, company, title, location, from, to, description } = this.state;
+    const { errors, company, title, location, from, to, description, current } = this.state;
     return (
       <div className="container-fluid register">
         <div className="profile-form">
@@ -82,12 +82,19 @@ class AddExperience extends Component {
               placeholder="from"
               label="To"
             />
+            <FormFieldTextGroup
+            name="current"
+            type="checkbox"
+            id='checkbox'
+            onChange={()=>{}}
+            label="Current Job"
+            />
             <FormTextAreaGroup
               name="description"
               value={description}
               error={errors.description}
               onChange={this.onChange}
-              placeholder="description"
+              placeholder="tell us about the position"
             />
           </div>
           <div className="form-r-side" />
