@@ -4,6 +4,7 @@ import PropTypes from "prop-types";
 import FormInputTextField from "./common/FormInputTextField";
 import FormFieldTextGroup from "./common/FormFieldTextGroup";
 import FormTextAreaGroup from './common/FormTextAreaGroup'
+import {newExp} from "./../actions/profileAction"
 
 class AddExperience extends Component {
   constructor(props) {
@@ -29,6 +30,16 @@ class AddExperience extends Component {
   onChange = (event) => {
     event.preventDefault()
     this.setState({[event.target.name]: event.target.value})
+  }
+  onCheck = ()=>{
+    this.setState(prevState=>({
+      disabled: !prevState.disabled,
+      current: !prevState.current
+    }))
+  }
+  addExp = (event) => {
+    event.preventDefault()
+    this.props.newExp(this.state)
   }
   render() {
     const { errors, company, title, location, from, to, description, current } = this.state;
@@ -70,7 +81,6 @@ class AddExperience extends Component {
               value={from}
               error={errors.from}
               onChange={this.onChange}
-              placeholder="from"
               label="From"
             />
             <FormFieldTextGroup
@@ -79,14 +89,14 @@ class AddExperience extends Component {
               value={to}
               error={errors.to}
               onChange={this.onChange}
-              placeholder="from"
               label="To"
+              disabled={this.state.disabled ? 'disabled': ''}
             />
             <FormFieldTextGroup
             name="current"
             type="checkbox"
             id='checkbox'
-            onChange={()=>{}}
+            onChange={this.onCheck}
             label="Current Job"
             />
             <FormTextAreaGroup
@@ -96,8 +106,9 @@ class AddExperience extends Component {
               onChange={this.onChange}
               placeholder="tell us about the position"
             />
+            <div onClick={this.addExp}>Add Experience</div>
           </div>
-          <div className="form-r-side" />
+          
         </div>
       </div>
     );
@@ -106,7 +117,8 @@ class AddExperience extends Component {
 
 AddExperience.proptypes = {
   profile: PropTypes.object.isRequired,
-  errors: PropTypes.object.isRequired
+  errors: PropTypes.object.isRequired,
+  newExp: PropTypes.func.isRequired
 };
 const mapstateToProps = state => ({
   profile: state.profile,
@@ -115,5 +127,5 @@ const mapstateToProps = state => ({
 
 export default connect(
   mapstateToProps,
-  {}
+  {newExp}
 )(AddExperience);

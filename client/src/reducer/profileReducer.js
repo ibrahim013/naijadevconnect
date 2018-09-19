@@ -4,7 +4,8 @@ import {
   GET_ERRORS,
   CLEAR_CURRENT_PROFILE,
   CREATE_PROFILE,
-  DELETE_CURRENT_USER
+  DELETE_CURRENT_USER,
+  ADD_NEW_EXPERIENCE
 } from "../types/types";
 
 const initialState = {
@@ -45,6 +46,11 @@ export const profileReducer = (state = initialState, action) => {
       return {
         ...state
       };
+      case ADD_NEW_EXPERIENCE:
+      return{
+        ...state,
+        profile:action.payload
+      }
     default:
       return state;
   }

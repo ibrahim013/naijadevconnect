@@ -4,6 +4,7 @@ import {
   GET_ERRORS,
   CLEAR_CURRENT_PROFILE,
   CREATE_PROFILE,
+  ADD_NEW_EXPERIENCE
 } from "../types/types";
 import axios from "axios";
 
@@ -33,6 +34,13 @@ export const getCurrentUserProfile = profile => {
     payload: profile
   };
 };
+
+export const addNewExp = (newExp) => {
+  return{
+    type: ADD_NEW_EXPERIENCE,
+    payload: newExp
+  }
+}
 
 export const clearCurrentUserProfile = () => {
   return {
@@ -66,3 +74,10 @@ export const newUserProfile = (userData, history) => dispatch => {
 };
 
 
+export const newExp = (expData) => dispatch => {
+  axios.post("/api/profile/experience", expData).then((res)=>{
+    dispatch(addNewExp(res.data));
+  }).catch((err)=>{
+    dispatch(errors(err.response.data))
+  })
+}
