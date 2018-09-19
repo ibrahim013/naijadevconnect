@@ -394,3 +394,7 @@ padding: .4rem;
 .social-input {
   width: 90%;
 }
+
+.is-disabled{
+  color: lightgrey  ;
+}

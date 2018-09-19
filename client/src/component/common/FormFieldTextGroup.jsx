@@ -11,7 +11,8 @@ const FormFieldTextGroup = ({
   name,
   placeholder,
   glyphicon,
-  id
+  id,
+  disabled
 }) => (
   <div className="form-content">
     <i className={glyphicon} />
@@ -20,9 +21,10 @@ const FormFieldTextGroup = ({
       value={value}
       onChange={onChange}
       name={name}
-      className={classNames("form-data", {"is-invalid": error})}
+      className={classNames("form-data", {"is-invalid": error, "is-disabled": disabled})}
       placeholder={placeholder}
       id={id}
+      disabled={disabled}
     />
     <label className="form-label" htmlFor={id}>
       {label}
@@ -40,7 +42,8 @@ FormFieldTextGroup.propTypes = {
   id: PropTypes.string,
   placeholder: PropTypes.string,
   error: PropTypes.string,
-  glyphicon: PropTypes.string
+  glyphicon: PropTypes.string,
+  disabled: PropTypes.string
 };
 
 FormFieldTextGroup.defaultProps = {
