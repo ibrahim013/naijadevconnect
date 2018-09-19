@@ -15,6 +15,7 @@ import PrivateRoute from "./component/common/PrivateRoute";
 import CreateProfile from "./component/CreateProfile";
 import EditProfile from "./component/EditProfile";
 import AddExperience from "./component/AddExperience";
+import AddEducation from "./component/AddEducation";
 
 if (!isEmpty(authCheck())) {
   store.dispatch(setUser(authCheck()));
@@ -35,6 +36,7 @@ class App extends Component {
               <PrivateRoute exact path="/dashboard" component={Dashboard} />
               <PrivateRoute exact path="/edit-profile" component={EditProfile} />
               <PrivateRoute exact path="/add-experience" component={AddExperience} />
+              <PrivateRoute exact path="/add-education" component={AddEducation} />
             </Switch>
           </div>
         </Router>

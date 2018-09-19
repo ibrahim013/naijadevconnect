@@ -5,7 +5,8 @@ import {
   CLEAR_CURRENT_PROFILE,
   CREATE_PROFILE,
   DELETE_CURRENT_USER,
-  ADD_NEW_EXPERIENCE
+  ADD_NEW_EXPERIENCE,
+  ADD_NEW_EDUCATION,
 } from "../types/types";
 
 const initialState = {
@@ -47,6 +48,11 @@ export const profileReducer = (state = initialState, action) => {
         ...state
       };
       case ADD_NEW_EXPERIENCE:
+      return{
+        ...state,
+        profile:action.payload
+      }
+      case ADD_NEW_EDUCATION:
       return{
         ...state,
         profile:action.payload

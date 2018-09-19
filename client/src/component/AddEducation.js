@@ -5,15 +5,15 @@ import PropTypes from "prop-types";
 import FormInputTextField from "./common/FormInputTextField";
 import FormFieldTextGroup from "./common/FormFieldTextGroup";
 import FormTextAreaGroup from './common/FormTextAreaGroup'
-import {newExperience} from "./../actions/profileAction"
+import {newEducation} from "./../actions/profileAction"
 
-class AddExperience extends Component {
+class AddEducation extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      company: "",
-      title: "",
-      location: "",
+      school: "",
+      degree: "",
+      fieldofstudy: "",
       from: "",
       to: "",
       current: false,
@@ -38,43 +38,43 @@ class AddExperience extends Component {
       current: !prevState.current
     }))
   }
-  addExperience = (event) => {
+  addEducation = (event) => {
     event.preventDefault()
-    this.props.newExp(this.state, this.props.history)
+    this.props.newEducation(this.state, this.props.history)
   }
   render() {
-    const { errors, company, title, location, from, to, description, current } = this.state;
+    const { errors, school, degree, fieldofstudy, from, to, description, current } = this.state;
     return (
       <div className="container-fluid register">
         <div className="profile-form">
           <div className="form-fl-side">
             <h5>DevConnect</h5>
-            <p className="side-message-p">Add Experience</p>
+            <p className="side-message-p">Add Education</p>
             <p className="side-message-2">
-              Add any job or position that you have had in the past or current
+              Add any school that you have been in the past or current
             </p>
           </div>
           <div className="form-l-side">
             <FormInputTextField
-              name="company"
-              value={company}
-              error={errors.company}
+              name="school"
+              value={school}
+              error={errors.school}
               onChange={this.onChange}
-              placeholder="*company"
+              placeholder="* school"
             />
               <FormInputTextField
-              name="title"
-              value={title}
-              error={errors.title}
+              name="degree"
+              value={degree}
+              error={errors.degree}
               onChange={this.onChange}
-              placeholder="* Job Title"
+              placeholder="* Degree"
             />
             <FormInputTextField
-              name="location"
-              value={location}
-              error={errors.location}
+              name="fieldofstudy"
+              value={fieldofstudy}
+              error={errors.fieldofstudy}
               onChange={this.onChange}
-              placeholder="location"
+              placeholder="Field of study"
             />
             <FormFieldTextGroup
               name="from"
@@ -107,7 +107,7 @@ class AddExperience extends Component {
               onChange={this.onChange}
               placeholder="tell us about the position"
             />
-            <div onClick={this.addExperience}>Add Experience</div>
+            <div onClick={this.addEducation}>Add Education</div>
           </div>
           
         </div>
@@ -116,10 +116,10 @@ class AddExperience extends Component {
   }
 }
 
-AddExperience.proptypes = {
+AddEducation.proptypes = {
   profile: PropTypes.object.isRequired,
   errors: PropTypes.object.isRequired,
-  newExperience: PropTypes.func.isRequired
+  newEducation: PropTypes.func.isRequired
 };
 const mapstateToProps = state => ({
   profile: state.profile,
@@ -128,5 +128,5 @@ const mapstateToProps = state => ({
 
 export default connect(
   mapstateToProps,
-  {newExperience}
-)(withRouter(AddExperience));
+  {newEducation}
+)(withRouter(AddEducation));

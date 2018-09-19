@@ -4,7 +4,8 @@ import {
   GET_ERRORS,
   CLEAR_CURRENT_PROFILE,
   CREATE_PROFILE,
-  ADD_NEW_EXPERIENCE
+  ADD_NEW_EXPERIENCE,
+  ADD_NEW_EDUCATION
 } from "../types/types";
 import axios from "axios";
 
@@ -41,6 +42,12 @@ export const addNewExp = (newExp) => {
     payload: newExp
   }
 }
+export const addNewEdu = (newEdu) => {
+  return{
+    type: ADD_NEW_EDUCATION,
+    payload: newEdu
+  }
+}
 
 export const clearCurrentUserProfile = () => {
   return {
@@ -74,9 +81,19 @@ export const newUserProfile = (userData, history) => dispatch => {
 };
 
 
-export const newExp = (expData) => dispatch => {
+export const newExperience = (expData, history) => dispatch => {
   axios.post("/api/profile/experience", expData).then((res)=>{
     dispatch(addNewExp(res.data));
+    history.push('/dashboard')
+  }).catch((err)=>{
+    dispatch(errors(err.response.data))
+  })
+}
+
+export const newEducation = (eduData, history) => dispatch => {
+  axios.post("/api/profile/education", eduData).then((res)=>{
+    dispatch(addNewEdu(res.data));
+    history.push('/dashboard')
   }).catch((err)=>{
     dispatch(errors(err.response.data))
   })

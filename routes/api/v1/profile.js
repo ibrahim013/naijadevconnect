@@ -269,7 +269,7 @@ router.post(
           from: req.body.from,
           to: req.body.to,
           current: req.body.current,
-          discription: req.body.discription
+          description: req.body.description
         };
         profile.experience.unshift(newExp);
         profile
