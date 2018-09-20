@@ -43,7 +43,7 @@ class AddEducation extends Component {
     this.props.newEducation(this.state, this.props.history)
   }
   render() {
-    const { errors, school, degree, fieldofstudy, from, to, description, current } = this.state;
+    const { errors, school, degree, fieldofstudy, from, to, description} = this.state;
     return (
       <div className="container-fluid register">
         <div className="profile-form">

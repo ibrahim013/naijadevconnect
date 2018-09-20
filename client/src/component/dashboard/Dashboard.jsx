@@ -1,27 +1,27 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { currentUserProfile } from "../../actions/profileAction";
-import {deleteAccount} from "../../actions/authAction";
+import { deleteAccount } from "../../actions/authAction";
 import PropTypes from "prop-types";
 import Spinner from "../common/Spinner";
 import { Link } from "react-router-dom";
 import ProfileAction from "./ProfileAction";
-import Experience from "./Experience"
-
+import Experience from "./Experience";
+import Education from "./Education";
 class Dashboard extends Component {
-componentDidMount() {
+  componentDidMount() {
     this.props.currentUserProfile();
   }
 
-  componentDidUpdate(prevProps){
-    if(this.props.profile.experience !== prevProps.profile.experience){
-      this.props.currentUserProfile()
+  componentDidUpdate(prevProps) {
+    if (this.props.profile.experience !== prevProps.profile.experienc || this.props.profile.education !== prevProps.profile.education ) {
+      this.props.currentUserProfile();
     }
   }
- onDelete = (event) => {
-   event.preventDefault()
-  this.props.deleteAccount();
-  }
+  onDelete = event => {
+    event.preventDefault();
+    this.props.deleteAccount();
+  };
   render() {
     const { user } = this.props.auth;
     const { profile, isLoading } = this.props.profile;
@@ -38,9 +38,12 @@ componentDidMount() {
             <Link to={`/my-profile/${profile.handle}`}>{user.user}</Link>
           </p>
           <ProfileAction />
-          <Experience experience={profile.experience}/>
+          <Experience experience={profile.experience} />
+          <Education education={profile.education} />
           <div>
-            <button className="btn btn-danger" onClick={this.onDelete}>Delete My Account</button>
+            <button className="btn btn-danger" onClick={this.onDelete}>
+              Delete My Account
+            </button>
           </div>
         </div>
       ));

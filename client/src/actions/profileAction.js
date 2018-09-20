@@ -107,11 +107,19 @@ export const newEducation = (eduData, history) => dispatch => {
 }
 
 //delete experience
-
-
 export const deleteExperience = (id, history) => dispatch => {
   dispatch(isLoading())
   axios.delete(`/api/profile/experience/${id}`).then((res)=>{
+    dispatch(delExp(res.data))
+  }).catch((err)=>{
+    dispatch(errors(err.response.data))
+  })
+}
+
+//delete education
+export const deleteEducation = (id) => dispatch => {
+  dispatch(isLoading())
+  axios.delete(`/api/profile/education/${id}`).then((res)=>{
     dispatch(delExp(res.data))
   }).catch((err)=>{
     dispatch(errors(err.response.data))
