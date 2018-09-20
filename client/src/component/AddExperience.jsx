@@ -40,7 +40,7 @@ class AddExperience extends Component {
   }
   addExperience = (event) => {
     event.preventDefault()
-    this.props.newExp(this.state, this.props.history)
+    this.props.newExperience(this.state, this.props.history)
   }
   render() {
     const { errors, company, title, location, from, to, description, current } = this.state;

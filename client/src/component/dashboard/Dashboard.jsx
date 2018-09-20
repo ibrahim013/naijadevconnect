@@ -9,10 +9,15 @@ import ProfileAction from "./ProfileAction";
 import Experience from "./Experience"
 
 class Dashboard extends Component {
-  componentDidMount() {
+componentDidMount() {
     this.props.currentUserProfile();
   }
 
+  componentDidUpdate(prevProps){
+    if(this.props.profile.experience !== prevProps.profile.experience){
+      this.props.currentUserProfile()
+    }
+  }
  onDelete = (event) => {
    event.preventDefault()
   this.props.deleteAccount();

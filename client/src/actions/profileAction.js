@@ -5,7 +5,8 @@ import {
   CLEAR_CURRENT_PROFILE,
   CREATE_PROFILE,
   ADD_NEW_EXPERIENCE,
-  ADD_NEW_EDUCATION
+  ADD_NEW_EDUCATION,
+  DELETE_EXPERIENCE
 } from "../types/types";
 import axios from "axios";
 
@@ -55,6 +56,12 @@ export const clearCurrentUserProfile = () => {
   };
 };
 
+export const delExp = (profile) => {
+  return {
+    type: DELETE_EXPERIENCE,
+    payload: profile
+  }
+}
 
 export const currentUserProfile = () => dispatch => {
   dispatch(isLoading());
@@ -94,6 +101,18 @@ export const newEducation = (eduData, history) => dispatch => {
   axios.post("/api/profile/education", eduData).then((res)=>{
     dispatch(addNewEdu(res.data));
     history.push('/dashboard')
+  }).catch((err)=>{
+    dispatch(errors(err.response.data))
+  })
+}
+
+//delete experience
+
+
+export const deleteExperience = (id, history) => dispatch => {
+  dispatch(isLoading())
+  axios.delete(`/api/profile/experience/${id}`).then((res)=>{
+    dispatch(delExp(res.data))
   }).catch((err)=>{
     dispatch(errors(err.response.data))
   })
