@@ -1,5 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
+import classNames from "classnames";
 
 const FormSocialInput = ({
   icon,
@@ -7,24 +8,29 @@ const FormSocialInput = ({
   onChange,
   name,
   type,
-  placeholder
+  placeholder,
+  error
 }) => {
   return (
+    <div>
+    {error && <span className="invalid-feedback-p">{error}</span>}
     <div className="input-group mb-3">
       <div className="input-group-prepend">
         <span className="input-group-text" id="basic-addon1">
-        <i className={icon}></i>
+          <i className={icon} />
         </span>
       </div>
       <input
         type={type}
-        className="form-control"
+        className={classNames("form-control",{ "is-invalid": error} )}
         placeholder={placeholder}
         aria-label={placeholder}
         value={value}
         onChange={onChange}
         name={name}
+        error={error}
       />
+    </div>
     </div>
   );
 };
@@ -33,7 +39,8 @@ FormSocialInput.propTypes = {
   value: PropTypes.string.isRequired,
   onChange: PropTypes.func.isRequired,
   name: PropTypes.string.isRequired,
-  placeholder: PropTypes.string.isRequired
+  placeholder: PropTypes.string.isRequired,
+  error: PropTypes.string
 };
 FormSocialInput.defaultProps = {
   type: "text"

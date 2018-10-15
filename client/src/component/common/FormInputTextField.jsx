@@ -9,12 +9,10 @@ const FormInputTextGroup = ({
   info,
   error,
   name,
-  label,
   placeholder,
-  glyphicon
 }) => (
   <div className="form-content-i">
-    <i className={glyphicon} />
+  {error && <span className="invalid-feedback-p">{error}</span>}
     <input
       type={type}
       value={value}
@@ -35,7 +33,7 @@ FormInputTextGroup.propTypes = {
   onChange: PropTypes.func.isRequired,
   placeholder: PropTypes.string,
   info: PropTypes.string,
-  glyphicon: PropTypes.string
+  error: PropTypes.string
 };
 
 FormInputTextGroup.defaultProps = {

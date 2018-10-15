@@ -7,7 +7,12 @@ module.exports = validateProfileInput = data => {
   data.handle = !isEmpty(data.handle) ? data.handle : '';
   data.status = !isEmpty(data.status) ? data.status : '';
   data.skills = !isEmpty(data.skills) ? data.skills : '';
-  
+  data.youtube = !isEmpty(data.youtube) ? data.youtube : '';
+  data.twitter = !isEmpty(data.twitter) ? data.twitter : '';
+  data.instagram = !isEmpty(data.instagram) ? data.instagram : '';
+  data.linkedin = !isEmpty(data.linkedin) ? data.linkedin : '';
+  data.facebook = !isEmpty(data.facebook) ? data.facebook : '';
+
   if(!Validator.isLength(data.handle, {min: 2, max: 40})){
     errors.handle = "This handle is too short"
   }
@@ -22,31 +27,37 @@ module.exports = validateProfileInput = data => {
     errors.skills = "skills are required"
   }
 
-  if(!isEmpty(data.website)){
+  if(!Validator.isEmpty(data.website)){
     if(!Validator.isURL(data.website)){
       errors.website = "enter a vaild URL"
     }
   }
 
-  if(!isEmpty(data.youtube)){
+  if(!Validator.isEmpty(data.youtube)){
     if(!Validator.isURL(data.youtube)){
       errors.youtube = "enter a vaild youtube url"
     }
   }
 
-  if(!isEmpty(data.twitter)){
+  if(!Validator.isEmpty(data.twitter)){
     if(!Validator.isURL(data.twitter)){
       errors.twitter = "enter a vaild twitter url"
     }
   }
 
-  if(!isEmpty(data.linkedin)){
+  if(!Validator.isEmpty(data.linkedin)){
     if(!Validator.isURL(data.linkedin)){
       errors.linkedin = "enter a vaild linkedin url"
     }
   }
 
-  if(!isEmpty(data.facebook)){
+  if(!Validator.isEmpty(data.instagram)){
+    if(!Validator.isURL(data.instagram)){
+      errors.instagram = "enter a vaild instagram url"
+    }
+  }
+  
+  if((!Validator.isEmpty(data.facebook))){
     if(!Validator.isURL(data.facebook)){
       errors.facebook = "enter a vaild facebook url"
     }
