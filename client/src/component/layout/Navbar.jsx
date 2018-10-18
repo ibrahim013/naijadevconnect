@@ -57,9 +57,9 @@ class Navbar extends Component {
     );
     return (
       <div>
-        <nav className="navbar navbar-expand-lg navbar-light bg-dark">
+        <nav className="navbar navbar-expand-lg navbar-light">
           <Link to="/" className="navbar-brand">
-            DevConnect
+            Devlink
           </Link>
           <button
             className="navbar-toggler"
