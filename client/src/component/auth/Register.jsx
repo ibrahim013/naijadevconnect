@@ -1,9 +1,11 @@
 import React, { Component } from "react";
 import FormFieldTextGroup from "../common/FormFieldTextGroup";
-import PropTypes from 'prop-types';
+import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
-import { withRouter } from 'react-router-dom'
+import { withRouter } from "react-router-dom";
+import classNames from "classnames";
+
 import { registerUser } from "../../actions/authAction";
 
 class Register extends Component {
@@ -21,9 +23,9 @@ class Register extends Component {
     this.setState({ [event.target.name]: event.target.value });
   };
 
-  componentDidMount(){
-    if(this.props.auth.isAuthenticated){
-      this.props.history.push('/dashboard')
+  componentDidMount() {
+    if (this.props.auth.isAuthenticated) {
+      this.props.history.push("/dashboard");
     }
   }
 
@@ -35,21 +37,17 @@ class Register extends Component {
 
   onSubmit = event => {
     event.preventDefault();
-    this.props.registerUser(this.state, this.props.history)
+    this.props.registerUser(this.state, this.props.history);
   };
   render() {
     const { name, email, password, confirmPassword, errors } = this.state;
     return (
-      <div className="container-fluid register">
+      <div>
         <div className="registration-form">
-          <div className="form-side">
-            <h5>DevConnect</h5>
-            <p className="side-message">Create your account</p>
-            <p className="side-message-2">
-              Sign up for a free account. No credit card required.
-            </p>
+          <div className="side-message">
+            <p>Create your account</p>
           </div>
-          <div className="form-main">
+          <div className="R-form-main">
             <FormFieldTextGroup
               type="text"
               name="name"
@@ -58,7 +56,11 @@ class Register extends Component {
               placeholder="Account Name"
               glyphicon="fas fa-user icon"
               label="Account name"
+              className={classNames("R-form-data", {
+                "is-invalid": errors.name
+              })}
               error={errors.name}
+              cLabel="R-form-label"
             />
             <FormFieldTextGroup
               type="email"
@@ -68,7 +70,11 @@ class Register extends Component {
               placeholder="email"
               glyphicon="fas fa-envelope icon"
               label="email"
+              className={classNames("R-form-data", {
+                "is-invalid": errors.email
+              })}
               error={errors.email}
+              cLabel="R-form-label"
             />
             <FormFieldTextGroup
               type="password"
@@ -78,7 +84,11 @@ class Register extends Component {
               placeholder="password"
               glyphicon="fas fa-key icon"
               label="password"
+              className={classNames("R-form-data", {
+                "is-invalid": errors.password
+              })}
               error={errors.password}
+              cLabel="R-form-label"
             />
             <FormFieldTextGroup
               type="password"
@@ -88,17 +98,21 @@ class Register extends Component {
               placeholder="confirm password"
               glyphicon="fas fa-unlock-alt icon"
               label="confirm password"
+              className={classNames("R-form-data", {
+                "is-invalid": errors.confirmPassword
+              })}
               error={errors.confirmPassword}
+              cLabel="R-form-label"
             />
             <div className="submit" onClick={this.onSubmit}>
               Create account
             </div>
           </div>
-        </div>
-        <div className="footer-content">
-          Already have an account with us?
-          <Link to="/"> Log in </Link>
-          instead.
+          <footer className="footer-content">
+            Already have an account with us?
+            <Link to="/">&nbsp; Login &nbsp; </Link>
+            instead.
+          </footer>
         </div>
       </div>
     );
@@ -108,8 +122,7 @@ Register.propTypes = {
   registerUser: PropTypes.func.isRequired,
   auth: PropTypes.object.isRequired,
   errors: PropTypes.object.isRequired
-
-}
+};
 const mapStateToProps = state => ({
   auth: state.auth,
   errors: state.errors

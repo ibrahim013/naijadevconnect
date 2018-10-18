@@ -4,6 +4,8 @@ import { connect } from "react-redux";
 import { userLogin } from "../../actions/authAction";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
+import classNames from "classnames";
+
 
 class Login extends Component {
   constructor() {
@@ -51,6 +53,10 @@ class Login extends Component {
             error={error.email}
             glyphicon="fas fa-envelope icon"
             label="email"
+            className={classNames("form-data", {
+              "is-invalid": error.email
+            })}
+            cLabel="form-label"
           />
         
           <FormFieldTextGroup
@@ -62,6 +68,10 @@ class Login extends Component {
             placeholder="password"
             glyphicon="fas fa-key icon"
             label="password"
+            className={classNames("form-data", {
+              "is-invalid": error.password
+            })}
+            cLabel="form-label"
           />
           <div className="submit" onClick={this.onSubmit}>
             <p>Log in</p>

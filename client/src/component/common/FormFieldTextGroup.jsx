@@ -1,6 +1,5 @@
 import React from "react";
 import PropTypes from "prop-types";
-import classNames from "classnames";
 
 const FormFieldTextGroup = ({
   type,
@@ -11,7 +10,9 @@ const FormFieldTextGroup = ({
   name,
   placeholder,
   id,
-  disabled
+  disabled,
+  className,
+  cLabel
 }) => (
   <div className="form-content">
     <input
@@ -19,12 +20,12 @@ const FormFieldTextGroup = ({
       value={value}
       onChange={onChange}
       name={name}
-      className={classNames("form-data", {"is-invalid": error, "is-disabled": disabled})}
+      className={className}
       placeholder={placeholder}
       id={id}
       disabled={disabled}
     />
-    <label className="form-label" htmlFor={id}>
+      <label className={cLabel} htmlFor={id}>
       {label}
     </label>
     {error && <span className="invalid-feedback">{error}</span>}
@@ -40,7 +41,8 @@ FormFieldTextGroup.propTypes = {
   id: PropTypes.string,
   placeholder: PropTypes.string,
   error: PropTypes.string,
-  disabled: PropTypes.string
+  disabled: PropTypes.string,
+  className: PropTypes.object.isRequired
 };
 
 FormFieldTextGroup.defaultProps = {

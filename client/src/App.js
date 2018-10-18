@@ -28,10 +28,10 @@ class App extends Component {
     return (
       <Provider store={store}>
         <Router>
-          <div>
-            {/* <Navbar /> */}
             <Switch>
               <Route exact path="/" component={LandingPage} />
+              <div>
+              <Navbar />
               <Route exact path="/register" component={Register} />
               <Route exact path="/login" component={Login} />
               <Route exact path="/createprofile" component={CreateProfile} />
@@ -41,8 +41,8 @@ class App extends Component {
               <PrivateRoute exact path="/edit-profile" component={EditProfile} />
               <PrivateRoute exact path="/add-experience" component={AddExperience} />
               <PrivateRoute exact path="/add-education" component={AddEducation} />
+              </div>
             </Switch>
-          </div>
         </Router>
       </Provider>
     );
