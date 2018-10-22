@@ -83,19 +83,18 @@ class CreateProfile extends Component {
     ];
 
     return (
-      <div className="container-fluid register">
+      <div>
         {!!dashboardContent ? (
           dashboardContent
         ) : (
           <div className="profile-form">
-            <div className="form-fl-side">
-              <h5>DevConnect</h5>
-              <p className="side-message-p">Create your profile</p>
-              <p className="side-message-2">
-                Lets get some information to get your profile stand out
-              </p>
-            </div>
             <div className="form-l-side">
+              <div className="form-heading">
+                <p className="side-message-p">Create your profile</p>
+                <p className="side-message-p2">
+                  Lets get some information to get your profile stand out
+                </p>
+              </div>
               <FormInputTextGroup
                 name="handle"
                 value={handle}
@@ -145,8 +144,6 @@ class CreateProfile extends Component {
                 placeholder="Github UserName"
                 info="if you want latest repo and a Github link, include your username"
               />
-            </div>
-            <div className="form-r-side">
               <FormTextAreaGroup
                 name="bio"
                 placeholder="brief about you"
@@ -200,7 +197,7 @@ class CreateProfile extends Component {
                   />
                 </div>
               </div>
-              <div className="submit-profile" onClick={this.onSubmit}>
+              <div className="submit dif-space" onClick={this.onSubmit}>
                 {isLoading ? "Loading..." : "Create Profile "}
               </div>
             </div>

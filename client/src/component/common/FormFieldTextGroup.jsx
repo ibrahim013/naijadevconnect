@@ -42,7 +42,7 @@ FormFieldTextGroup.propTypes = {
   placeholder: PropTypes.string,
   error: PropTypes.string,
   disabled: PropTypes.string,
-  className: PropTypes.object.isRequired
+  className: PropTypes.string.isRequired
 };
 
 FormFieldTextGroup.defaultProps = {

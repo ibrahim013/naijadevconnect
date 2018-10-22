@@ -36,7 +36,7 @@ export const setUser = userData => {
 };
 
 
-export const userLogin = userData => dispatch => {
+export const userLogin = (userData, history) => dispatch => {
   axios
     .post("/api/users/login", userData)
     .then(res => {
@@ -49,6 +49,7 @@ export const userLogin = userData => dispatch => {
       const decodedToken = jwt_decode(token);
       //dispatch decoded token to redux store
       dispatch(setUser(decodedToken));
+      history.push('/dashboard')
     })
     .catch(err => dispatch(setUserError(err.response.data)));
 };
