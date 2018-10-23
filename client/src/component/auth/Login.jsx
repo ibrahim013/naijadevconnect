@@ -3,7 +3,7 @@ import FormFieldTextGroup from "../common/FormFieldTextGroup";
 import { connect } from "react-redux";
 import { userLogin } from "../../actions/authAction";
 import PropTypes from "prop-types";
-import { Link } from "react-router-dom";
+import { Link, withRouter } from "react-router-dom";
 import classNames from "classnames";
 
 
@@ -22,7 +22,7 @@ class Login extends Component {
   onSubmit = event => {
     const userData = { email: this.state.email, password: this.state.password };
     event.preventDefault();
-    this.props.userLogin(userData);
+    this.props.userLogin(userData, this.props.history);
   };
 
   componentDidMount() {
@@ -93,4 +93,4 @@ const mapStateToProps = state => ({
 export default connect(
   mapStateToProps,
   { userLogin }
-)(Login);
+)(withRouter(Login));

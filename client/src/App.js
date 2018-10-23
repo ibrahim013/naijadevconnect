@@ -28,21 +28,40 @@ class App extends Component {
     return (
       <Provider store={store}>
         <Router>
-            <Switch>
-              <Route exact path="/" component={LandingPage} />
-              <div>
+          <div>
+            <div>
+              <Switch>
+                <Route exact path="/" component={LandingPage} />
+              </Switch>
+            </div>
+
+            <div>
               <Navbar />
-              <Route exact path="/register" component={Register} />
-              <Route exact path="/login" component={Login} />
-              <Route exact path="/createprofile" component={CreateProfile} />
-              <Route exact path="/profiles" component={Profiles} />
-              <Route exact path="/profile/:handle" component={Profile} />
-              <PrivateRoute exact path="/dashboard" component={Dashboard} />
-              <PrivateRoute exact path="/edit-profile" component={EditProfile} />
-              <PrivateRoute exact path="/add-experience" component={AddExperience} />
-              <PrivateRoute exact path="/add-education" component={AddEducation} />
-              </div>
-            </Switch>
+              <Switch>
+                <Route exact path="/register" component={Register} />
+                <Route exact path="/createprofile" component={CreateProfile} />
+                <Route exact path="/profiles" component={Profiles} />
+                <Route exact path="/profile/:handle" component={Profile} />
+                <PrivateRoute exact path="/dashboard" component={Dashboard} />
+                <PrivateRoute
+                  exact
+                  path="/edit-profile"
+                  component={EditProfile}
+                />
+                <PrivateRoute
+                  exact
+                  path="/add-experience"
+                  component={AddExperience}
+                />
+                <PrivateRoute
+                  exact
+                  path="/add-education"
+                  component={AddEducation}
+                />
+              </Switch>
+            </div>
+            {/* <Route exact path="/login" component={Login} /> */}
+          </div>
         </Router>
       </Provider>
     );
