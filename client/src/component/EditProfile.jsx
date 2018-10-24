@@ -119,11 +119,13 @@ class CreateProfile extends Component {
           dashboardContent
         ) : (
           <div className="profile-form">
-            <div className="form-fl-side">
-              <h5>DevConnect</h5>
-              <p className="side-message-p">Edit profile</p>
-            </div>
             <div className="form-l-side">
+              <div className="form-heading">
+                <p className="side-message-p">Edit profile</p>
+                <p className="side-message-p2">
+                  You can make profile even better
+                </p>
+              </div>
               <FormInputTextGroup
                 name="handle"
                 value={handle}
@@ -146,8 +148,8 @@ class CreateProfile extends Component {
                 value={company}
                 error={errors.company}
                 onChange={this.onChange}
-                placeholder="company"
-                info="could be your own company or one you work for"
+                placeholder="*company"
+                info="* could be your own company or one you work for"
               />
               <FormInputTextGroup
                 name="location"
@@ -173,8 +175,6 @@ class CreateProfile extends Component {
                 placeholder="Github UserName"
                 info="if you want latest repo and a Github link, include your username"
               />
-            </div>
-            <div className="form-r-side">
               <FormTextAreaGroup
                 name="bio"
                 placeholder="brief about you"
@@ -228,8 +228,8 @@ class CreateProfile extends Component {
                   />
                 </div>
               </div>
-              <div className="submit-profile" onClick={this.onSubmit}>
-                {isLoading ? "Loading..." : "Edit Profile "}
+              <div className="submit dif-space" onClick={this.onSubmit}>
+                {isLoading ? "Loading..." : "Create Profile "}
               </div>
             </div>
           </div>
